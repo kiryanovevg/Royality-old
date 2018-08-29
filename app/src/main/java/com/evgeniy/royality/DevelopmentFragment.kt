@@ -2,17 +2,16 @@ package com.evgeniy.royality
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class UserFragment : Fragment() {
+class DevelopmentFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = layoutInflater.inflate(R.layout.user_info_fragment, container, false)
+        (activity as AppCompatActivity).supportActionBar?.title = arguments?.getString(TITLE)
 
-
-
-        return view
+        return layoutInflater.inflate(R.layout.development, container, false)
     }
 }

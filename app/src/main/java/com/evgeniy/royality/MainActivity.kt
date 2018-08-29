@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        nav_view.menu.getItem(0).isChecked = true
-        onNavigationItemSelected(nav_view.menu.getItem(0))
+        nav_view.menu.getItem(1).isChecked = true
+        onNavigationItemSelected(nav_view.menu.getItem(1))
 
         nav_view.getHeaderView(0).findViewById<TextView>(R.id.name)
                 .text =  sharedPrefs.getString(NAME, getString(R.string.user_name))
@@ -49,12 +49,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.profile -> {setFragment(UserFragment())}
-            R.id.bonuses -> {}
-            R.id.shares -> {}
-            R.id.loyalty_programs -> {}
-            R.id.polls -> {}
-            R.id.settings -> {}
+            R.id.profile -> {setFragment(DevelopmentFragment(), R.string.profile)}
+            R.id.bonuses -> {setFragment(BonusFragment(), R.string.bonuses)}
+            R.id.shares -> {setFragment(DevelopmentFragment(), R.string.shares)}
+            R.id.loyalty_programs -> {setFragment(DevelopmentFragment(), R.string.loyalty_programs)}
+            R.id.polls -> {setFragment(DevelopmentFragment(), R.string.polls)}
+            R.id.settings -> {setFragment(DevelopmentFragment(), R.string.settings)}
             R.id.logout -> {
                 sharedPrefs.edit()
                         .putBoolean(LOGIN, false)
@@ -67,7 +67,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return true
     }
 
-    private fun setFragment(fragment: Fragment) {
+    private fun setFragment(fragment: Fragment, resId: Int) {
+        val args = Bundle()
+        args.putString(TITLE, getString(resId))
+
+        fragment.arguments = args
+
         supportFragmentManager.beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit()

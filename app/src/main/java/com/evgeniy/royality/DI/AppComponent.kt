@@ -4,6 +4,7 @@ import com.evgeniy.restapp.DI.Modules.AndroidModule
 import com.evgeniy.restapp.DI.Modules.NetModule
 import com.evgeniy.restapp.DI.Modules.RepositoryModule
 import com.evgeniy.royality.App
+import com.evgeniy.royality.BonusFragment
 import com.evgeniy.royality.LoginActivity
 import com.evgeniy.royality.MainActivity
 import dagger.Component
@@ -16,4 +17,5 @@ interface AppComponent {
     fun inject(app: App)
     fun inject(app: LoginActivity)
     fun inject(mainActivity: MainActivity)
+    fun inject(bonusFragment: BonusFragment)
 }
